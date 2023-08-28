@@ -10,6 +10,13 @@ dependencies:
   get: 4.6.5
   flutter: 
     sdk: flutter
+  flutter_svg: ^2.0.7
+  google_fonts: ^5.1.0
+  http: ^1.1.0
+  intl_phone_field: ^3.2.0
+  url_launcher: ^6.1.12
+  loading_animation_widget: ^1.2.0+4
+  flutter_svg_provider: ^1.0.6
 
 dev_dependencies: 
   flutter_lints: ^2.0.0
@@ -18,4 +25,6 @@ dev_dependencies:
 
 flutter: 
   uses-material-design: true
-
+  assets:
+    - assets/
+    - assets/svg/
