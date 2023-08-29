@@ -291,7 +291,9 @@ class SignUpView extends GetView<SignUpController> {
                         ),
                         const SizedBox(height: 9),
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Get.toNamed(Routes.otp);
+                          },
                           child: Container(
                             height: 56,
                             width: double.maxFinite,
