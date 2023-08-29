@@ -379,6 +379,26 @@ class SignUpView extends GetView<SignUpController> {
                       ],
                     ),
                   ),
+                  const SizedBox(height: 25),
+                  InkWell(
+                    onTap: () {},
+                    child: Row(
+                      children: [
+                        SvgPicture.asset('assets/right_arrow.svg'),
+                        const SizedBox(width: 7),
+                        Text(
+                          "Need Help?",
+                          style: GoogleFonts.roboto(
+                            color: Colors.black,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            height: 21.09.toFigmaHeight(18),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 10),
                 ],
               ),
             ),
