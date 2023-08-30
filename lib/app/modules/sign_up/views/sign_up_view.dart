@@ -79,6 +79,7 @@ class SignUpView extends GetView<SignUpController> {
                         SizedBox(
                           height: 47,
                           child: TextField(
+                            controller: controller.nameController,
                             decoration: InputDecoration(
                               contentPadding: const EdgeInsets.symmetric(
                                 vertical: 15,
@@ -113,6 +114,7 @@ class SignUpView extends GetView<SignUpController> {
                         SizedBox(
                           height: 47,
                           child: TextField(
+                            controller: controller.emailController,
                             decoration: InputDecoration(
                               contentPadding: const EdgeInsets.symmetric(
                                 vertical: 15,
@@ -147,6 +149,7 @@ class SignUpView extends GetView<SignUpController> {
                         SizedBox(
                           height: 47,
                           child: IntlPhoneField(
+                            controller: controller.phoneController,
                             decoration: InputDecoration(
                               contentPadding: const EdgeInsets.symmetric(
                                 vertical: 15,
@@ -192,43 +195,49 @@ class SignUpView extends GetView<SignUpController> {
                         const SizedBox(height: 20),
                         SizedBox(
                           height: 47,
-                          child: TextField(
-                            decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.symmetric(
-                                vertical: 15,
-                                horizontal: 12,
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(6),
-                                borderSide: BorderSide(
-                                  color: Colors.black.withOpacity(0.3),
-                                  width: 0.89,
+                          child: Obx(() {
+                            return TextField(
+                              controller: controller.passController,
+                              decoration: InputDecoration(
+                                contentPadding: const EdgeInsets.symmetric(
+                                  vertical: 15,
+                                  horizontal: 12,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(6),
+                                  borderSide: BorderSide(
+                                    color: Colors.black.withOpacity(0.3),
+                                    width: 0.89,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(6),
+                                  borderSide: const BorderSide(
+                                    color: Color(0xffEE03C9),
+                                    width: 0.89,
+                                  ),
+                                ),
+                                hintText: "Enter Your Password",
+                                hintStyle: GoogleFonts.roboto(
+                                  color: const Color(0xff747474),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  height: 16.41.toFigmaHeight(14),
+                                ),
+                                suffixIcon: InkWell(
+                                  onTap: () {
+                                    controller.passHidden.toggle();
+                                  },
+                                  child: SvgPicture.asset(
+                                    'assets/visible.svg',
+                                    fit: BoxFit.none,
+                                  ),
                                 ),
                               ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(6),
-                                borderSide: const BorderSide(
-                                  color: Color(0xffEE03C9),
-                                  width: 0.89,
-                                ),
-                              ),
-                              hintText: "Enter Your Password",
-                              hintStyle: GoogleFonts.roboto(
-                                color: const Color(0xff747474),
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                height: 16.41.toFigmaHeight(14),
-                              ),
-                              suffixIcon: InkWell(
-                                onTap: () {},
-                                child: SvgPicture.asset(
-                                  'assets/visible.svg',
-                                  fit: BoxFit.none,
-                                ),
-                              ),
-                            ),
-                            cursorColor: const Color(0xffEE03C9),
-                          ),
+                              cursorColor: const Color(0xffEE03C9),
+                              obscureText: controller.passHidden.value,
+                            );
+                          }),
                         ),
                         const SizedBox(height: 10),
                         Row(

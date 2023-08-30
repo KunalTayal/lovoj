@@ -78,6 +78,7 @@ we’ve sent you''',
             const SizedBox(height: 21),
             Center(
               child: Pinput(
+                controller: controller.otpController,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 defaultPinTheme: PinTheme(
                   width: 67,
