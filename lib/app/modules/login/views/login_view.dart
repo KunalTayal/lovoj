@@ -119,6 +119,7 @@ class LoginView extends GetView<LoginController> {
                         SizedBox(
                           height: 47,
                           child: TextField(
+                            controller: controller.emailController,
                             decoration: InputDecoration(
                               contentPadding: const EdgeInsets.symmetric(
                                 vertical: 15,
@@ -157,6 +158,7 @@ class LoginView extends GetView<LoginController> {
                         SizedBox(
                           height: 47,
                           child: TextField(
+                            controller: controller.passController,
                             decoration: InputDecoration(
                               contentPadding: const EdgeInsets.symmetric(
                                 vertical: 15,
