@@ -317,10 +317,10 @@ class LoginView extends GetView<LoginController> {
                                 ),
                                 const SizedBox(height: 20),
                                 InkWell(
-                                  onTap: () {
+                                  onTap: () async {
                                     if (controller.formKey.currentState!
                                         .validate()) {
-                                      controller.loginWithEmail();
+                                      await controller.loginWithEmail();
                                     }
                                   },
                                   child: Container(

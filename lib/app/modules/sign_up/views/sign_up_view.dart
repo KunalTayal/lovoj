@@ -347,11 +347,11 @@ class SignUpView extends GetView<SignUpController> {
                             ),
                             const SizedBox(height: 9),
                             InkWell(
-                              onTap: () {
+                              onTap: () async {
                                 if (controller.check.value) {
                                   if (controller.formKey.currentState!
                                       .validate()) {
-                                    controller.generateOTP();
+                                    await controller.generateOTP();
                                   }
                                 } else {
                                   Get.showSnackbar(
