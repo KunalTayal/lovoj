@@ -51,7 +51,7 @@ class ApiRepositary {
     }
   }
 
-  sendOTP(String email) async {
+  sendOTP(String name, String email, String phone, String password) async {
     try {
       var response = await http.post(
         Uri.parse('https://fabricssoftware.com/api/v1/auth/checkemail'),
@@ -60,6 +60,12 @@ class ApiRepositary {
       );
       if (response.statusCode == 200) {
         print(jsonDecode(response.body));
+        Get.toNamed(Routes.otp, arguments: {
+          'name': name,
+          'email': email,
+          'phone': phone,
+          'password': password,
+        });
         Get.showSnackbar(
           GetSnackBar(
             message: jsonDecode(response.body)['message'],

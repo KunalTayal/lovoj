@@ -10,7 +10,6 @@ class OtpController extends GetxController {
   late Timer timer;
   RxInt start = 59.obs;
   RxBool isLoading = false.obs;
-  ApiRepositary apiRepositary = ApiRepositary();
 
   @override
   void onInit() {
@@ -19,7 +18,6 @@ class OtpController extends GetxController {
   }
 
   void startTimer() {
-    generateOTP();  
     time.value = false;
     timer = Timer.periodic(
       1.seconds,
@@ -35,13 +33,9 @@ class OtpController extends GetxController {
     );
   }
 
-  generateOTP() async {
-    await apiRepositary.sendOTP(Get.arguments['email']);
-  }
-
   verifyOTPCreateStore() async {
     isLoading.toggle();
-    await apiRepositary.createStore(
+    await ApiRepositary().createStore(
       Get.arguments['name'],
       otpController.text,
       Get.arguments['email'],
