@@ -14,180 +14,196 @@ class OtpView extends GetView<OtpController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 35),
-            InkWell(
-              onTap: () {
-                Get.back();
-              },
-              child: Container(
-                height: 52,
-                width: 52,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color(0xffE8E6EA),
-                    width: 1,
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 35),
+                InkWell(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: Container(
+                    height: 52,
+                    width: 52,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: const Color(0xffE8E6EA),
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.white,
+                    ),
+                    child: SvgPicture.asset(
+                      'assets/backward_arrow.svg',
+                      fit: BoxFit.none,
+                    ),
                   ),
-                  borderRadius: BorderRadius.circular(15),
-                  color: Colors.white,
                 ),
-                child: SvgPicture.asset(
-                  'assets/backward_arrow.svg',
-                  fit: BoxFit.none,
+                const SizedBox(height: 44),
+                Center(
+                  child: SvgPicture.asset('assets/chat.svg'),
                 ),
-              ),
-            ),
-            const SizedBox(height: 44),
-            Center(
-              child: SvgPicture.asset('assets/chat.svg'),
-            ),
-            const SizedBox(height: 9),
-            Center(
-              child: Obx(() {
-                return (controller.start.value < 60)
-                    ? Text(
-                        controller.start.value.toString().length == 2
-                            ? "00:${controller.start.value}"
-                            : "00:0${controller.start.value}",
-                        style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontSize: 34,
-                          fontWeight: FontWeight.w700,
-                          height: 51.0.toFigmaHeight(34),
-                        ),
-                      )
-                    : Container();
-              }),
-            ),
-            const SizedBox(height: 9),
-            Center(
-              child: SizedBox(
-                width: 200,
-                child: Text(
-                  '''Type the verification 
+                const SizedBox(height: 9),
+                Center(
+                  child: Obx(() {
+                    return (controller.start.value < 60)
+                        ? Text(
+                            controller.start.value.toString().length == 2
+                                ? "00:${controller.start.value}"
+                                : "00:0${controller.start.value}",
+                            style: GoogleFonts.poppins(
+                              color: Colors.black,
+                              fontSize: 34,
+                              fontWeight: FontWeight.w700,
+                              height: 51.0.toFigmaHeight(34),
+                            ),
+                          )
+                        : Container();
+                  }),
+                ),
+                const SizedBox(height: 9),
+                Center(
+                  child: SizedBox(
+                    width: 200,
+                    child: Text(
+                      '''Type the verification 
 code 
 we’ve sent you''',
-                  style: GoogleFonts.poppins(
-                    color: Colors.black.withOpacity(0.7),
-                    fontSize: 18,
-                    fontWeight: FontWeight.w400,
-                    height: 27.0.toFigmaHeight(18),
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-            const SizedBox(height: 21),
-            Center(
-              child: Pinput(
-                controller: controller.otpController,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                defaultPinTheme: PinTheme(
-                  width: 67,
-                  height: 70,
-                  padding: const EdgeInsets.all(10),
-                  margin: const EdgeInsets.symmetric(horizontal: 4.5),
-                  textStyle: GoogleFonts.poppins(
-                    color: const Color(0xffE8E6EA),
-                    fontSize: 34,
-                    fontWeight: FontWeight.w700,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: const Color(0xffE8E6EA)),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-                focusedPinTheme: PinTheme(
-                  width: 67,
-                  height: 70,
-                  padding: const EdgeInsets.all(10),
-                  margin: const EdgeInsets.symmetric(horizontal: 4.5),
-                  textStyle: GoogleFonts.poppins(
-                    color: const Color(0xff200E32).withOpacity(0.4),
-                    fontSize: 34,
-                    fontWeight: FontWeight.w700,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: const Color(0xffF603D0)),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-                submittedPinTheme: PinTheme(
-                  width: 67,
-                  height: 70,
-                  padding: const EdgeInsets.all(10),
-                  margin: const EdgeInsets.symmetric(horizontal: 4.5),
-                  textStyle: GoogleFonts.poppins(
-                    color: Colors.white,
-                    fontSize: 34,
-                    fontWeight: FontWeight.w700,
-                  ),
-                  decoration: BoxDecoration(
-                    color: const Color(0xffF603D0),
-                    border: Border.all(color: const Color(0xffF603D0)),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-                cursor: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 9),
-                      width: 22,
-                      height: 1,
-                      color: const Color(0xffF603D0),
+                      style: GoogleFonts.poppins(
+                        color: Colors.black.withOpacity(0.7),
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                        height: 27.0.toFigmaHeight(18),
+                      ),
+                      textAlign: TextAlign.center,
                     ),
-                  ],
+                  ),
                 ),
-                onCompleted: (value) {
-                  controller.verifyOTPCreateStore();
-                },
-                length: 4,
+                const SizedBox(height: 21),
+                Center(
+                  child: Pinput(
+                    controller: controller.otpController,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    defaultPinTheme: PinTheme(
+                      width: 67,
+                      height: 70,
+                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.symmetric(horizontal: 4.5),
+                      textStyle: GoogleFonts.poppins(
+                        color: const Color(0xffE8E6EA),
+                        fontSize: 34,
+                        fontWeight: FontWeight.w700,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: const Color(0xffE8E6EA)),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    focusedPinTheme: PinTheme(
+                      width: 67,
+                      height: 70,
+                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.symmetric(horizontal: 4.5),
+                      textStyle: GoogleFonts.poppins(
+                        color: const Color(0xff200E32).withOpacity(0.4),
+                        fontSize: 34,
+                        fontWeight: FontWeight.w700,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: const Color(0xffF603D0)),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    submittedPinTheme: PinTheme(
+                      width: 67,
+                      height: 70,
+                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.symmetric(horizontal: 4.5),
+                      textStyle: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontSize: 34,
+                        fontWeight: FontWeight.w700,
+                      ),
+                      decoration: BoxDecoration(
+                        color: const Color(0xffF603D0),
+                        border: Border.all(color: const Color(0xffF603D0)),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    cursor: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(bottom: 9),
+                          width: 22,
+                          height: 1,
+                          color: const Color(0xffF603D0),
+                        ),
+                      ],
+                    ),
+                    onCompleted: (value) {
+                      controller.verifyOTPCreateStore();
+                    },
+                    length: 4,
+                  ),
+                ),
+                const SizedBox(height: 100),
+                Center(
+                  child: Obx(() {
+                    return (controller.start.value < 60)
+                        ? Container()
+                        : InkWell(
+                            onTap: () {
+                              controller.startTimer();
+                            },
+                            borderRadius: BorderRadius.circular(15),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 5, horizontal: 10),
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    offset: const Offset(0, 0),
+                                    blurRadius: 80,
+                                    spreadRadius: 0,
+                                    color: const Color(0xffF603D0)
+                                        .withOpacity(0.3),
+                                  )
+                                ],
+                              ),
+                              child: Text(
+                                "Send again",
+                                style: GoogleFonts.poppins(
+                                  color: const Color(0xffF603D0),
+                                  fontSize: 16,
+                                  height: 24.0.toFigmaHeight(16),
+                                ),
+                              ),
+                            ),
+                          );
+                  }),
+                ),
+              ],
+            ),
+          ),
+          Visibility(
+            visible: controller.isLoading.value,
+            child: const Dialog.fullscreen(
+              child: Center(
+                child: CircularProgressIndicator.adaptive(
+                  valueColor: AlwaysStoppedAnimation(Color(0xffEE03C9)),
+                  strokeWidth: 2,
+                ),
               ),
             ),
-            const SizedBox(height: 100),
-            Center(
-              child: Obx(() {
-                return (controller.start.value < 60)
-                    ? Container()
-                    : InkWell(
-                        onTap: () {
-                          controller.startTimer();
-                        },
-                        borderRadius: BorderRadius.circular(15),
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 5, horizontal: 10),
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                offset: const Offset(0, 0),
-                                blurRadius: 80,
-                                spreadRadius: 0,
-                                color: const Color(0xffF603D0).withOpacity(0.3),
-                              )
-                            ],
-                          ),
-                          child: Text(
-                            "Send again",
-                            style: GoogleFonts.poppins(
-                              color: const Color(0xffF603D0),
-                              fontSize: 16,
-                              height: 24.0.toFigmaHeight(16),
-                            ),
-                          ),
-                        ),
-                      );
-              }),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
