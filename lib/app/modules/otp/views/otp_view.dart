@@ -47,15 +47,21 @@ class OtpView extends GetView<OtpController> {
             ),
             const SizedBox(height: 9),
             Center(
-              child: Text(
-                "00:42",
-                style: GoogleFonts.poppins(
-                  color: Colors.black,
-                  fontSize: 34,
-                  fontWeight: FontWeight.w700,
-                  height: 51.0.toFigmaHeight(34),
-                ),
-              ),
+              child: Obx(() {
+                return (controller.start.value < 60)
+                    ? Text(
+                        controller.start.value.toString().length == 2
+                            ? "00:${controller.start.value}"
+                            : "00:0${controller.start.value}",
+                        style: GoogleFonts.poppins(
+                          color: Colors.black,
+                          fontSize: 34,
+                          fontWeight: FontWeight.w700,
+                          height: 51.0.toFigmaHeight(34),
+                        ),
+                      )
+                    : Container();
+              }),
             ),
             const SizedBox(height: 9),
             Center(
@@ -139,38 +145,46 @@ we’ve sent you''',
                     ),
                   ],
                 ),
-                onCompleted: (value) {},
+                onCompleted: (value) {
+                  controller.verifyOTPCreateStore();
+                },
                 length: 4,
               ),
             ),
             const SizedBox(height: 100),
             Center(
-              child: InkWell(
-                onTap: () {},
-                borderRadius: BorderRadius.circular(15),
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        offset: const Offset(0, 0),
-                        blurRadius: 80,
-                        spreadRadius: 0,
-                        color: const Color(0xffF603D0).withOpacity(0.3),
-                      )
-                    ],
-                  ),
-                  child: Text(
-                    "Send again",
-                    style: GoogleFonts.poppins(
-                      color: const Color(0xffF603D0),
-                      fontSize: 16,
-                      height: 24.0.toFigmaHeight(16),
-                    ),
-                  ),
-                ),
-              ),
+              child: Obx(() {
+                return (controller.start.value < 60)
+                    ? Container()
+                    : InkWell(
+                        onTap: () {
+                          controller.startTimer();
+                        },
+                        borderRadius: BorderRadius.circular(15),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 10),
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                offset: const Offset(0, 0),
+                                blurRadius: 80,
+                                spreadRadius: 0,
+                                color: const Color(0xffF603D0).withOpacity(0.3),
+                              )
+                            ],
+                          ),
+                          child: Text(
+                            "Send again",
+                            style: GoogleFonts.poppins(
+                              color: const Color(0xffF603D0),
+                              fontSize: 16,
+                              height: 24.0.toFigmaHeight(16),
+                            ),
+                          ),
+                        ),
+                      );
+              }),
             ),
           ],
         ),

@@ -253,12 +253,16 @@ class SignUpView extends GetView<SignUpController> {
                               validator: (value) {
                                 if (value == "" ||
                                     value == null ||
-                                    value.length <= 6) {
-                                  return "Please enter strong password";
+                                    value.length < 6 ||
+                                    !value.contains(
+                                        RegExp(r'([A-Z]|[a-z])+([0-9])'))) {
+                                  return "Password must contain only alphabets and numbers";
                                 } else {
                                   return null;
                                 }
                               },
+                              autovalidateMode:
+                                  AutovalidateMode.onUserInteraction,
                               obscureText: controller.passHidden.value,
                             );
                           }),
@@ -327,7 +331,12 @@ class SignUpView extends GetView<SignUpController> {
                               if (controller.check.value) {
                                 if (controller.formKey.currentState!
                                     .validate()) {
-                                  Get.toNamed(Routes.otp);
+                                  Get.toNamed(Routes.otp, arguments: {
+                                    'name': controller.nameController.text,
+                                    'email': controller.emailController.text,
+                                    'phone': controller.phoneController.text,
+                                    'password': controller.passController.text,
+                                  });
                                 }
                               } else {
                                 Get.showSnackbar(
