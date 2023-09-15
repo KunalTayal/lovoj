@@ -10,16 +10,19 @@ class SignUpController extends GetxController {
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
+  RxBool isLoading = false.obs;
   Rx<DateTime> preBackpress =
       DateTime.now().subtract(const Duration(seconds: 2)).obs;
   RxBool passHidden = true.obs;
 
   generateOTP() async {
+    isLoading.toggle();
     await ApiRepositary().sendOTP(
       nameController.text,
       emailController.text,
       phoneController.text,
       passController.text,
     );
+    isLoading.toggle();
   }
 }

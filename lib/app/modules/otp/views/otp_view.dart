@@ -192,17 +192,19 @@ we’ve sent you''',
               ],
             ),
           ),
-          Visibility(
-            visible: controller.isLoading.value,
-            child: const Dialog.fullscreen(
-              child: Center(
-                child: CircularProgressIndicator.adaptive(
-                  valueColor: AlwaysStoppedAnimation(Color(0xffEE03C9)),
-                  strokeWidth: 2,
+          Obx(() {
+            return Visibility(
+              visible: controller.isLoading.value,
+              child: const Dialog.fullscreen(
+                child: Center(
+                  child: CircularProgressIndicator.adaptive(
+                    valueColor: AlwaysStoppedAnimation(Color(0xffEE03C9)),
+                    strokeWidth: 2,
+                  ),
                 ),
               ),
-            ),
-          ),
+            );
+          }),
         ],
       ),
     );
