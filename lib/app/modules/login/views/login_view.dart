@@ -280,7 +280,7 @@ class LoginView extends GetView<LoginController> {
                                           value == null ||
                                           value.length < 6 ||
                                           !value.contains(RegExp(
-                                              r'([A-Z]|[a-z])+([0-9])'))) {
+                                              r'^(?=.*[a-zA-Z]).{8,}$'))) {
                                         return "Password must contain only alphabets and numbers";
                                       } else {
                                         return null;

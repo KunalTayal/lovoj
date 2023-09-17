@@ -276,10 +276,10 @@ class SignUpView extends GetView<SignUpController> {
                                     validator: (value) {
                                       if (value == "" ||
                                           value == null ||
-                                          value.length < 6 ||
+                                          value.length <= 6 ||
                                           !value.contains(RegExp(
-                                              r'([A-Z]|[a-z])+([0-9])'))) {
-                                        return "Password must contain only alphabets and numbers";
+                                              r'^(?=.*[a-zA-Z]).{6,}$'))) {
+                                        return "Password must contain atleast 6 characters, atleast 1 uppercase letter, 1 lowercase letter, and 1 number";
                                       } else {
                                         return null;
                                       }
